@@ -9,6 +9,10 @@ function Form() {
   };
 
   const createTodo = () => {
+    if (!title) {
+      alert("Please select a title");
+      return;
+    }
     const todoRef = firebase.database().ref("Todo");
     const todo = {
       title,

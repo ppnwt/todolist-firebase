@@ -19,9 +19,13 @@ input[type="text"] {
 
 .add-btn {
   padding: .5rem 1rem;
-  background: #43cb28;
+  background: #287fcb;
   color: #fff;
   border: none;
+}
+
+.bi-check {
+  color: #43cb28;
 }
 
 .delete-btn {
@@ -33,7 +37,7 @@ input[type="text"] {
 
 .complete-btn {
   padding: .5rem 1rem;
-  background: #287fcb;
+  background: #43cb28;
   color: #fff;
   border: none;
 }
