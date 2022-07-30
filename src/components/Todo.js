@@ -3,14 +3,18 @@ import firebase from "../utils/firebase";
 import "../App.css";
 
 export default function Todo({ todo }) {
+  const getTodoRef = (todo) => {
+    return firebase.database().ref("Todo").child(todo.id);
+  };
+
   const deleteTodo = () => {
     alert("Are you sure you want to delete ?");
-    const todoRef = firebase.database().ref("Todo").child(todo.id);
+    const todoRef = getTodoRef(todo);
     todoRef.remove();
   };
 
   const completeTodo = () => {
-    const todoRef = firebase.database().ref("Todo").child(todo.id);
+    const todoRef = getTodoRef(todo);
     todoRef.update({
       complete: !todo.complete,
     });
