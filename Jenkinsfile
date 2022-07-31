@@ -87,7 +87,9 @@ pipeline {
                 }//script
                 sshCommand remote: remote, command: 'rm -rf todolist-firebase.tar.gz ; rm -rf todolist-firebase'
                 sshPut remote: remote, from: './todolist-firebase.tar.gz/', into: '.'
-                sshCommand remote: remote, command: 'ls -l ; chown -R root:root todolist-firebase.tar.gz ; tar -xvf todolist-firebase.tar.gz ; cd todolist-firebase ; pm2 restart todolist-firebase'
+                sshCommand remote: remote, command: 'chown -R root:root todolist-firebase.tar.gz'
+                sshCommand remote: remote, command: 'ls -l ; tar -xvf todolist-firebase.tar.gz'
+                sshCommand remote: remote, command: 'cd todolist-firebase ; pm2 restart todolist-firebase'
                 
         }
       }
