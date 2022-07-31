@@ -56,7 +56,7 @@ pipeline {
       }
     }
 
-    stage("tar files files build"){
+    stage("files compressing"){
       steps {
           script{
               sh script: '''
@@ -68,7 +68,7 @@ pipeline {
       }
     }
 
-    stage("ssh deploy stage"){
+    stage("Deployment ssh to Deploy server"){
       steps {
         withCredentials([usernamePassword(credentialsId: 'rootdeploy-id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh '''
@@ -87,7 +87,8 @@ pipeline {
                 }//script
                 sshCommand remote: remote, command: 'rm -rf todolist-firebase.tar.gz ; rm -rf todolist-firebase'
                 sshPut remote: remote, from: './todolist-firebase.tar.gz/', into: '.'
-                sshCommand remote: remote, command: 'ls -l ; tar -xvf todolist-firebase.tar.gz ; chown -R root:root todolist-firebase'
+                sshCommand remote: remote, command: 'ls -l ; tar -xvf todolist-firebase.tar.gz ; chown -R root:root todolist-firebase ; cd todolist-firebase ; pm2 restart todolist-firebase'
+                
         }
       }
     }
