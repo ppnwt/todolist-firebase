@@ -49,7 +49,6 @@ pipeline {
       steps {
           script{
               sh script: '''
-              
               cd $WORKSPACE/
               npm run build
 
@@ -89,7 +88,7 @@ pipeline {
                 }//script
                 sshCommand remote: remote, command: 'rm -rf todolist-firebase.tar.gz ; rm -rf todolist-firebase'
                 sshPut remote: remote, from: './todolist-firebase.tar.gz/', into: '.'
-                sshCommand remote: remote, command: 'ls -l ; tar -xvf todolist-firebase.tar.gz ; cd todolist-firebase ; ls -l'
+                sshCommand remote: remote, command: 'ls -l ; tar -xvf todolist-firebase.tar.gz ; chown -R root:root todolist-firebase'
         }
       }
     }
