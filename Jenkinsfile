@@ -1,3 +1,8 @@
+def remote = [:]
+remote.name = "myjenkinsBuild"
+remote.host = "139.180.141.237"
+remote.allowAnyHosts = true
+
 pipeline {
   agent {
     docker {
@@ -34,7 +39,7 @@ pipeline {
               sh script: '''
               cd $WORKSPACE/
               ls -l
-              npm install
+              npm install --production
               '''
           }
       }
@@ -67,17 +72,38 @@ pipeline {
 
     stage("ssh deploy stage"){
       steps {
-          script{
-              echo 'SSH to deploy somewhere'
-          }
+        withCredentials([usernamePassword(credentialsId: 'rootdeploy-id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          // available as an env variable, but will be masked if you try to print it out any which way
+          // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
+          sh 'echo $PASSWORD'
+          // also available as a Groovy variable
+          echo USERNAME
+          // or inside double quotes for string interpolation
+          echo "username is $USERNAME"
+            sh '''
+                set +x
+                    echo "#################################################################"
+                    echo "#Deployment"
+                    echo "#################################################################"
+                pwd
+                ls -l
+              '''
+              
+                script{
+                  remote.user = USERNAME
+                  remote.password = PASSWORD
+                  sshCommand remote: remote, command: 'ls -l'
+                }//script
+                sshCommand remote: remote, command: 'rm -rf todolist-firebase.tar.gz ; rm -rf todolist-firebase'
+                sshPut remote: remote, from: './todolist-firebase.tar.gz/', into: '.'
+                sshCommand remote: remote, command: 'ls -l ; tar -xvf todolist-firebase.tar.gz ; cd todolist-firebase ; ls -l'
+        }
       }
     }
-
-  }//end stages
-  
-  post {
-      always {
-          cleanWs()
-      }    
   }
+   post {
+        always {
+            cleanWs()
+        }    
+    }
 }//end pipeline
