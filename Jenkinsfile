@@ -4,11 +4,11 @@ remote.host = "139.180.141.237"
 remote.allowAnyHosts = true
 
 pipeline {
-  agent {
-    docker {
-      image 'node:16.15.1'
+  // change to docker later
+  agent any
+    tools {
+      nodejs '16.15.1'
     }
-  }
     
   environment {
       HOME = '.'
@@ -58,13 +58,14 @@ pipeline {
 
     stage("files compressing"){
       steps {
-          script{
-              sh script: '''
-              cd $WORKSPACE && mkdir todolist-firebase && ls -l
-              mv node_modules/ build/ public/ src/ package.json ./todolist-firebase/
-              cd .. && ls -l && tar cvzf todolist-firebase.tar.gz ./todolist-firebase/ && ls -l
-              '''
-          }
+        script{
+          sh script: '''
+          whoami
+          cd $WORKSPACE && mkdir todolist-firebase && ls -l
+          mv node_modules/ build/ public/ src/ package.json ./todolist-firebase/
+          tar czvf todolist-firebase.tar.gz ./todolist-firebase ; ls -l
+          '''
+        }
       }
     }
 
@@ -77,21 +78,21 @@ pipeline {
                     echo "#Deployment"
                     echo "#################################################################"
                 pwd
-                ls -l
+                ls -ltr
               '''
               
                 script{
                   remote.user = USERNAME
                   remote.password = PASSWORD
-                  sshCommand remote: remote, command: 'ls -l'
-                }//script
+                  sshCommand remote: remote, command: 'ls -ltr'
+                }
                 sshCommand remote: remote, command: 'rm -rf todolist-firebase.tar.gz ; rm -rf todolist-firebase'
                 sshPut remote: remote, from: './todolist-firebase.tar.gz/', into: '.'
-                // sshCommand remote: remote, command: 'chown -R root:root todolist-firebase.tar.gz'
+                sshCommand remote: remote, command: 'chown -R root:root todolist-firebase.tar.gz'
                 sshCommand remote: remote, command: 'ls -l ; tar -xvf todolist-firebase.tar.gz'
-                sshCommand remote: remote, command: 'cd todolist-firebase ; ls -l'
-                // sshCommand remote: remote, command: 'pm2 restart todolist-firebase''
-                
+                sshCommand remote: remote, command: 'chown -R root:root todolist-firebase'
+                sshCommand remote: remote, command: 'rm -rf todolist-firebase.tar.gz'
+                sshCommand remote: remote, command: 'pm2 restart todolist-firebase'
         }
       }
     }
