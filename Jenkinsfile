@@ -51,7 +51,6 @@ pipeline {
               sh script: '''
               cd $WORKSPACE/
               npm run build
-
               '''
           }
       }
@@ -62,7 +61,7 @@ pipeline {
           script{
               sh script: '''
               cd $WORKSPACE && mkdir todolist-firebase && ls -l
-              mv node_modules/ build/ public/ src/ package.json ./todolist-firebase/ && cd todolist-firebase &&  ls -l
+              mv node_modules/ build/ public/ src/ package.json ./todolist-firebase/
               cd .. && ls -l && tar cvzf todolist-firebase.tar.gz ./todolist-firebase/ && ls -l
               '''
           }
