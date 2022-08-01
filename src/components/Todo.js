@@ -23,7 +23,7 @@ export default function Todo({ todo }) {
   return (
     <div>
       <h1 className={todo.complete ? "complete" : ""}>
-        {todo.complete ? <i class="bi-check"></i> : <></>}
+        {todo.complete ? <i className="bi-check"></i> : <></>}
         {todo.title}
       </h1>
       <button className="complete-btn" onClick={completeTodo}>
