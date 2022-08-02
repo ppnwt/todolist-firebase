@@ -25,10 +25,10 @@ pipeline {
     stage('checkout scm') {
       steps {
         script{
-           sh script: '''
+          sh script: '''
               cd $WORKSPACE/
               '''
-           git branch: 'main', url: 'https://github.com/newzpanuwat/todolist-firebase'
+          git branch: 'main', url: 'https://github.com/newzpanuwat/todolist-firebase'
         }
       }
     }
@@ -97,9 +97,9 @@ pipeline {
       }
     }
   }
-   post {
-        always {
-            cleanWs()
-        }    
-    }
+  post {
+    always {
+        cleanWs()
+    }    
+  }
 }//end pipeline
