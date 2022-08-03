@@ -26,7 +26,7 @@ export default function Todo({ todo, idx }) {
       <TableRow key={idx}>
         <TableCell>
           <button className="complete-btn" onClick={completeTodo}>
-            <span>Mark</span>
+            <span>{!todo.complete ? "Mark" : "Undo"}</span>
           </button>
           &nbsp;
           <button className="delete-btn" onClick={deleteTodo}>
