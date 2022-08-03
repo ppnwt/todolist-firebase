@@ -7,6 +7,7 @@ function App() {
     <div className="App">
       <h1>TodoList Firebase</h1>
       <Form />
+      <br />
       <TodoList />
     </div>
   );
