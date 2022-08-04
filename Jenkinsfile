@@ -62,7 +62,7 @@ pipeline {
           sh script: '''
           whoami
           cd $WORKSPACE && mkdir todolist-firebase && ls -l
-          mv node_modules/ build/ public/ src/ package.json ./todolist-firebase/
+          mv build/ ./todolist-firebase/
           tar czvf todolist-firebase.tar.gz ./todolist-firebase ; ls -l
           '''
         }
@@ -93,6 +93,7 @@ pipeline {
                 sshCommand remote: remote, command: 'chown -R root:root todolist-firebase'
                 sshCommand remote: remote, command: 'rm -rf todolist-firebase.tar.gz'
                 sshCommand remote: remote, command: 'pm2 restart todolist-firebase'
+                // pm2 serve build/ --name "todolist" 3000 --spa
         }
       }
     }
