@@ -14,14 +14,11 @@ import { Loading } from "./Loading";
 // utils
 import firebase from "../utils/firebase";
 import { columns } from "../utils/columns";
+import { tableColumnStyle } from "../utils/customCss";
 
 export default function TodoList() {
-  const tableColumnStyle = {
-    backgroundColor: "#0065CC",
-    color: "#fff",
-  };
-
   const [todoList, setTodoList] = useState();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setOpen(true);
@@ -37,8 +34,6 @@ export default function TodoList() {
       setOpen(false);
     });
   }, []);
-
-  const [open, setOpen] = useState(false);
 
   return (
     <>

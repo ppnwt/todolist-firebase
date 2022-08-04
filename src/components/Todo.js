@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "../utils/firebase";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { tableCellStyle } from "../utils/customCss";
 
 // css
 import "../App.css";
@@ -21,11 +22,6 @@ export default function Todo({ todo, idx }) {
     todoRef.update({
       complete: !todo.complete,
     });
-  };
-
-  const tableCellStyle = {
-    width: "30%",
-    padding: "10px 10px 10px 10px",
   };
 
   return (
