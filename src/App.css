@@ -24,10 +24,6 @@ input[type="text"] {
   border: none;
 }
 
-.bi-check {
-  color: #43cb28;
-}
-
 .delete-btn {
   padding: .5rem 1rem;
   background: #cb2828;

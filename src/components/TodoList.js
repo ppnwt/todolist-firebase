@@ -12,6 +12,11 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function TodoList() {
+  const tableColumnStyle = {
+    backgroundColor: "#0065CC",
+    color: "#fff",
+  };
+
   const [todoList, setTodoList] = useState();
 
   useEffect(() => {
@@ -33,14 +38,17 @@ export default function TodoList() {
 
   const columns = [
     {
+      id: 1,
       accessorKey: "#",
       header: "#",
     },
     {
+      id: 2,
       accessorKey: "title",
       header: "Title",
     },
     {
+      id: 3,
       accessorKey: "complete",
       header: "Complete",
     },
@@ -53,7 +61,9 @@ export default function TodoList() {
           <TableHead>
             <TableRow>
               {columns.map((label) => (
-                <TableCell>{label.header}</TableCell>
+                <TableCell key={label.id} sx={tableColumnStyle}>
+                  {label.header}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>

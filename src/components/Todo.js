@@ -21,10 +21,15 @@ export default function Todo({ todo, idx }) {
     });
   };
 
+  const tableCellStyle = {
+    width: "30%",
+    padding: "10px 10px 10px 10px",
+  };
+
   return (
     <>
       <TableRow key={idx}>
-        <TableCell>
+        <TableCell sx={tableCellStyle}>
           <button className="complete-btn" onClick={completeTodo}>
             <span>{!todo.complete ? "Mark" : "Undo"}</span>
           </button>
@@ -36,8 +41,8 @@ export default function Todo({ todo, idx }) {
         <TableCell>
           <span className={todo.complete ? "complete" : ""}>{todo.title}</span>
         </TableCell>
-        <TableCell>
-          {todo.complete ? <i className="bi-check"></i> : <></>}
+        <TableCell align="center" sx={{ width: "15%" }}>
+          {todo.complete ? <i className="bi bi-check-circle-fill"></i> : <></>}
         </TableCell>
       </TableRow>
     </>
