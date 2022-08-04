@@ -1,8 +1,10 @@
 import React from "react";
 import firebase from "../utils/firebase";
-import "../App.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+
+// css
+import "../App.css";
 
 export default function Todo({ todo, idx }) {
   const getTodoRef = (todo) => {

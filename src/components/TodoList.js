@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../utils/firebase";
 import Todo from "./Todo";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,8 +7,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
+
+// component
+import { Loading } from "./Loading";
+
+// utils
+import firebase from "../utils/firebase";
+import { columns } from "../utils/columns";
 
 export default function TodoList() {
   const tableColumnStyle = {
@@ -34,28 +38,11 @@ export default function TodoList() {
     });
   }, []);
 
-  const [open, setOpen] = React.useState(false);
-
-  const columns = [
-    {
-      id: 1,
-      accessorKey: "#",
-      header: "#",
-    },
-    {
-      id: 2,
-      accessorKey: "title",
-      header: "Title",
-    },
-    {
-      id: 3,
-      accessorKey: "complete",
-      header: "Complete",
-    },
-  ];
+  const [open, setOpen] = useState(false);
 
   return (
-    <div>
+    <>
+      <Loading open={open} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="my table">
           <TableHead>
@@ -68,18 +55,11 @@ export default function TodoList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {todoList
-              ? todoList.map((todo, idx) => <Todo todo={todo} key={idx} />)
-              : ""}
+            {todoList &&
+              todoList.map((todo, idx) => <Todo todo={todo} key={idx} />)}
           </TableBody>
         </Table>
       </TableContainer>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </div>
+    </>
   );
 }

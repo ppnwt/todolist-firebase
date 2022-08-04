@@ -24,7 +24,11 @@ function Form() {
 
   return (
     <div>
-      <input type="text" onChange={handleChange} value={title} />
+      <label htmlFor="title">
+        <h1>Todolist firebase</h1>
+      </label>
+      <br />
+      <input id="title" type="text" onChange={handleChange} value={title} />
       <button className="add-btn" onClick={createTodo}>
         Add
       </button>
