@@ -1,6 +1,6 @@
 #!/bin/sh
 
-tagName="v0.1.1"
+tagName="v0.1.4"
 git add .
 git commit -m "tag $tagName"
 git tag $tagName -m "update tag deploy $tagName"
