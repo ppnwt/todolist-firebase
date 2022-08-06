@@ -1,6 +1,6 @@
 #!/bin/sh
 
-tagName="v0.1.0"
+tagName="v0.1.1"
 
 git pull --rebase
 git add .
