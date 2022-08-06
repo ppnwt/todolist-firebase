@@ -28,7 +28,7 @@ pipeline {
           sh script: '''
               cd $WORKSPACE/
               '''
-          git branch: 'main', url: 'https://github.com/newzpanuwat/todolist-firebase'
+          git branch: 'main', refspec: '+refs/tags/*':'refs/remotes/origin/tags/*', url: 'https://github.com/newzpanuwat/todolist-firebase'
         }
       }
     }
