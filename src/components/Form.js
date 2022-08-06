@@ -25,7 +25,7 @@ function Form() {
   return (
     <div>
       <label htmlFor="title">
-        <h1>Todolist firebase</h1>
+        <h1>Todolist Firebase</h1>
       </label>
       <br />
       <input id="title" type="text" onChange={handleChange} value={title} />
