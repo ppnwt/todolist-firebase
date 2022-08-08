@@ -1,0 +1,6 @@
+{
+  "Todo": {
+    "title": { "string": {} },
+    "complete": { "boolean": false }
+  }
+}
