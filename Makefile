@@ -7,9 +7,9 @@ deploy:
 
 push:
 	git add .
-	git commit -m "$(arg)"
+	git commit -m "$(m)"
 	git pull --rebase
-	# git push origin main
+	git push origin main
 
 test:
-	echo "test $(arg)"
+	echo "test $(m)"
