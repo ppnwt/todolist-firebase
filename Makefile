@@ -7,8 +7,6 @@ deploy:
 
 push:
 	git add .
-	# $(arg)="general commit message.."
-	# if [ $(arg) -eq 1 ]; then msg="$(arg)"; fi
 	git commit -m "$(arg)"
 	git pull --rebase
 	# git push origin main
