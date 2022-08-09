@@ -1,5 +1,5 @@
 deploy:
-	tagName="v0.1.10"
+	$tagName="v0.1.10"
 	git add .
 	git commit -m "tag $tagName"
 	git tag $tagName -m "update tag deploy $tagName"
