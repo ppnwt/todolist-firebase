@@ -5,7 +5,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDsv1j7GhRo1z1ubTu0XbcY1EKCvRW5QwU",
   authDomain: "fir-crud-6269f.firebaseapp.com",
   databaseURL:
-    "https://fir-crud-6269f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "https://todo-crud-eaeaa-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "fir-crud-6269f",
   storageBucket: "fir-crud-6269f.appspot.com",
   messagingSenderId: "733416716429",
