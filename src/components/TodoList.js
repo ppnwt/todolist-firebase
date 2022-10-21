@@ -12,7 +12,7 @@ import Paper from "@mui/material/Paper";
 import { Loading } from "./Loading";
 
 // utils
-import firebase from "../utils/_firebase";
+import firebase from "../utils/firebase";
 import { columns } from "../utils/columns";
 import { tableColumnStyle } from "../utils/customCss";
 
